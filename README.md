@@ -1,4 +1,4 @@
-# Sway Practice | Tiny RSA (as in tiny numbers to practice with)
+# Sway Practice | Tiny RSA (as in the numbers are tiny)
 
 The [rsa example](https://ccom.uprrp.edu/~humberto/very-small-rsa-example.html). 
 
