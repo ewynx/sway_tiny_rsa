@@ -2,13 +2,13 @@ contract;
 use std::{assert::assert, math::*};
 use std::logging::log;
 
-abi RSA {
+abi Tiny_RSA {
     fn key_gen() -> (u64, u64);
     fn encrypt(m: u64) -> u64;
     fn decrypt(c: u64) -> u64;
 }
 
-impl RSA for Contract {
+impl Tiny_RSA for Contract {
 
     // Has absolutely no other use than testing the tuple type
     fn key_gen() -> (u64, u64) {

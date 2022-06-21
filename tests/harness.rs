@@ -1,10 +1,10 @@
-use fuels::{prelude::*, tx::ContractId};
+use fuels::prelude::*;
 use fuels_abigen_macro::abigen;
 
 // Load abi from json
-abigen!(MyContract, "out/debug/rsa_sway-abi.json");
+abigen!(Tiny_RSA, "out/debug/rsa_sway-abi.json");
 
-async fn get_contract_instance() -> (MyContract, ContractId) {
+async fn get_contract_instance() -> Tiny_RSA{
     // Launch a local network and deploy the contract
     let wallet = launch_provider_and_get_single_wallet().await;
 
@@ -12,9 +12,9 @@ async fn get_contract_instance() -> (MyContract, ContractId) {
         .await
         .unwrap();
 
-    let instance = MyContract::new(id.to_string(), wallet);
+    let instance = Tiny_RSA::new(id.to_string(), wallet);
 
-    (instance, id)
+    instance
 }
 
 /**
@@ -23,7 +23,7 @@ The tiny example comes from https://ccom.uprrp.edu/~humberto/very-small-rsa-exam
 
 #[tokio::test]
 async fn test_encrypt() {
-    let (_instance, _id) = get_contract_instance().await;
+    let _instance = get_contract_instance().await;
     let test = _instance.key_gen().call().await.unwrap();
     assert_eq!(test.value, (1,1));
     let m1: u64 = 10;
@@ -36,7 +36,7 @@ async fn test_encrypt() {
 
 #[tokio::test]
 async fn test_decrypt() {
-    let (_instance, _id) = get_contract_instance().await;
+    let _instance = get_contract_instance().await;
     let m1: u64 = 10;
     let m2: u64 = 11;
     let c1 = _instance.encrypt(m1).call().await.unwrap();
